@@ -128,3 +128,17 @@ table.log_entry_group tr {
   text-decoration: none;
   font-weight: bold;
 }
+.alert {
+  font-size: small;
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: small;
+}
