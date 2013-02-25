@@ -4,6 +4,7 @@ class UsersController < InheritedResources::Base
   before_filter :require_user, :only => [:index, :show, :edit, :update]
   before_filter :already_logged_in, :only => [:new]
   before_filter :no_user_listing, :only => [:index]
+  before_filter :user_profile_url, :only => [:show]
   before_filter :load_logs, :only => [:show]
 
   def update
@@ -28,6 +29,13 @@ class UsersController < InheritedResources::Base
       return
     end
   end
+
+  def user_profile_url
+    unless params.has_key?(:username)
+      redirect_to "/#{current_user.username}"
+    end
+  end
+
 
   def no_user_listing
     flash[:alert] = "User listing is not allowed"
