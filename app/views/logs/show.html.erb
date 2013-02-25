@@ -2,6 +2,7 @@
 
 <% content_for :breadcrumbs do %>
   <ul class="breadcrumb">
+    <li id="entry_input_form_toggle"><a href="#" rel="tooltip" title="Toggle new entry"><i class="icon-edit"></i></a></li>
     <li><%= image_tag(@user.avatar.badge.url, :class => 'img-polaroid') %> <%= @user.fullname %>
       <span class="divider">/</span></li>
     <li class="active"><%= @log.name %></li>
@@ -17,7 +18,7 @@
   </div>
 
   <div class="span7">
-    <!-- %= paginate @entries % -->
+    <!-- %= paginate @entry_groups % -->
     <table class="table">
       <% @entry_groups.each { |key, value|
           @entries = value
@@ -29,7 +30,9 @@
           <div class="log_time_year"><%= key.to_s(:log_time_yr) %></div>
         </td>
         <td class="span6">
-          <%= render @entries %>
+          <table class="span6 log_entry_group">
+            <%= render @entries %>
+          </table>
         </td>
       </tr>
       <% } %>

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+var entry_input_state = 0;
 !function ($) {
 $(function(){
 
@@ -21,7 +22,7 @@ $(function(){
   //
   // Activate Bootstrap tooltips
   //
-  $(".container").tooltip({
+  $(".container-narrow").tooltip({
     selector: "a[rel~=tooltip]"
   });
 
@@ -29,6 +30,14 @@ $(function(){
   // Dismiss alerts after 5 seconds
   //
   $('.alert').delay(5000).fadeOut(300);
+
+  //
+  // Control the Entry input field
+  //
+  $("#entry_input_form").hide();
+  $("#entry_input_form_toggle i").click(function() {
+      $("#entry_input_form").slideToggle("fast");
+  });
 })
 
 }(window.jQuery)

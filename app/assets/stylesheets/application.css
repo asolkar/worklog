@@ -93,18 +93,28 @@ body {
 }
 
 /* Entry controls */
-.log_entry .log_entry_body,
-.log_entry .log_entry_ctrl
-{
-  display: inline-block;
-  margin-left: 0px;
+.log_entry:hover .log_entry_body,
+.log_entry:hover .log_entry_ctrl {
+  background-color: #eee;
 }
-.log_entry .log_entry_ctrl .icon-remove  {
+.log_entry:hover .log_entry_ctrl {
+  text-align: center;
+}
+.log_entry_group .log_entry_ctrl .icon-remove  {
   display: none;
 }
 .log_entry:hover .log_entry_ctrl .icon-remove {
   display: inline-block;
 }
-.log_entry {
-  margin: 0px 8px;
+table.log_entry_group td {
+  border: none;
+}
+table.log_entry_group tbody tr:first-child {
+  border-top: none;
+}
+table.log_entry_group tr {
+  border-top: thin dotted #eee;
+}
+#entry_input_form_toggle {
+  float: right;
 }
