@@ -17,9 +17,22 @@
   </div>
 
   <div class="span7">
-    <%= paginate @entries %>
-    <table class="table table-hover">
-    <%= render @entries %>
+    <!-- %= paginate @entries % -->
+    <table class="table">
+      <% @entry_groups.each { |key, value|
+          @entries = value
+      %>
+      <tr>
+        <td class="span1">
+          <div class="log_time_month"><%= key.to_s(:log_time_mn) %></div>
+          <div class="log_time_day"><%= key.to_s(:log_time_dy) %></div>
+          <div class="log_time_year"><%= key.to_s(:log_time_yr) %></div>
+        </td>
+        <td class="span6">
+          <%= render @entries %>
+        </td>
+      </tr>
+      <% } %>
     </table>
   </div><!-- /.span7 -->
 </div><!-- /.row -->

@@ -22,7 +22,9 @@ class EntriesController < InheritedResources::Base
 
   protected
     def collection
-      @entries ||= end_of_association_chain.order(:created_at).page(params[:page]).per(5)
+      @entries ||= end_of_association_chain.order(:created_at)
+      # @entries ||= @entries.group_by("date_format(created_at, '%Y%m%d')")
+      @entries ||= @entries.page(params[:page]).per(3)
     end
 
   private

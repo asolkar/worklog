@@ -73,10 +73,38 @@ body {
   padding: 7px 9px;
 }
 
+/* Entry table */
+.log_time_day {
+  color: #ccc;
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
+.log_time_month {
+  color: #ccc;
+  font-size: x-small;
+  text-transform: uppercase;
+  text-align: center;
+}
+.log_time_year {
+  color: #ccc;
+  font-size: x-small;
+  text-align: center;
+}
+
 /* Entry controls */
-.table-hover .icon-remove {
+.log_entry .log_entry_body,
+.log_entry .log_entry_ctrl
+{
+  display: inline-block;
+  margin-left: 0px;
+}
+.log_entry .log_entry_ctrl .icon-remove  {
   display: none;
 }
-.table-hover tr:hover .icon-remove {
-  display: block;
+.log_entry:hover .log_entry_ctrl .icon-remove {
+  display: inline-block;
+}
+.log_entry {
+  margin: 0px 8px;
 }
