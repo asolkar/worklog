@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'Edit', edit_log_entry_path(@entry.log.user, @entry.log, @entry) %> |
+<%= link_to 'Back', log_entries_path(@entry.log.user, @entry.log) %>

@@ -1,0 +1,17 @@
+        <% if current_user %>
+            <!-- a class="btn btn-small" href="/logout">Logout <%= current_user.fullname %></a -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.username %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/<%= current_user.username %>">My Profile</a></li>
+                <!-- li><a href="/<%= current_user.username %>/shops">My Shops</a></li>
+                <li><a href="/shops/new">Create Shop</a></li -->
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+        <% end %>
+        <% if !current_user %>
+          <li <%= yield(:login_link_style) %> ><a href="/login">Log in</a></li>
+          <li <%= yield(:signup_link_style) %> ><a href="/signup" style="margin-left: 0.5em">Sign Up</a></li>
+        <% end %>

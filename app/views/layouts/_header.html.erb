@@ -1,0 +1,18 @@
+    <div class="masthead">
+      <ul class="nav nav-pills pull-right">
+        <li <%= yield(:home_link_style) %> ><a href="/">Home</a></li>
+        <li <%= yield(:about_link_style) %> ><a href="/about">About</a></li>
+        <li <%= yield(:help_link_style) %> ><a href="/help">Help</a></li>
+        <%= render 'shared/login_state' %>
+      </ul>
+      <h3 class="muted"><%= yield(:app_name) %></h3>
+    </div>
+    <%= render 'shared/alerts' %>
+
+    <% if content_for?(:breadcrumbs) %>
+      <%= yield(:breadcrumbs) %>
+    <% else %>
+      <hr>
+    <% end %>
+
+    <h2><%= yield(:page_heading) %></h2>

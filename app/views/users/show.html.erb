@@ -1,0 +1,20 @@
+<% provide(:title, 'User Info - ' + "#{@user.fullname}") %>
+
+<% content_for :breadcrumbs do %>
+  <ul class="breadcrumb">
+    <li><%= image_tag(@user.avatar.badge.url, :class => 'img-polaroid') %> <%= @user.fullname %></li>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="span7">
+    <%= paginate @logs %>
+    <table class="table">
+    <tr><th>Name</th><th>Description</th><th>Actions</th></tr>
+    <%= render @logs %>
+    </table>
+  </div><!-- /.span9 -->
+</div><!-- /.row -->
+
+<%= link_to 'Edit', edit_path(@user), :class => 'btn' %>
+<%= link_to 'Create Log', new_log_path(@user), :class => 'btn btn-primary' %>

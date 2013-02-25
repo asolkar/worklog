@@ -1,0 +1,66 @@
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+  <% if @user.errors.any? %>
+    <div class="well">
+      <b><%= pluralize(@user.errors.count, "error") %>
+        prohibited this user from being saved:</b>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li class="text-error"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- div class="field">
+    <%= f.label :created_at %>
+    <%= f.datetime_select :created_at %>
+  </div -->
+  <dl class="dl-horizontal">
+    <dt><%= f.label :fullname %></dt>
+    <dd><%= f.text_field :fullname %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= f.label :username %></dt>
+    <dd><%= f.text_field :username, :disabled => !@user.username.blank? %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= f.label :email %></dt>
+    <dd><%= f.email_field :email %></dd>
+  </dl>
+  <!-- div class="field">
+    <%= f.label :id %>
+    <%= f.number_field :id %>
+  </div -->
+  <dl class="dl-horizontal">
+    <dt><%= f.label :password %></dt>
+    <dd><%= f.password_field :password %></dd>
+  </dl>
+
+  <% if @user.errors.has_key?(:password_confirmation) %>
+  <dl class="dl-horizontal control-group error">
+  <% else %>
+  <dl class="dl-horizontal">
+  <% end %>
+    <dt><%= f.label :password_confirmation %></dt>
+      <dd>
+      <% if @user.errors.has_key?(:password_confirmation) %>
+        <%= f.password_field :password_confirmation, :id => 'inputError' %>
+        <div class="help-inline"><%= @user.errors.get(:password_confirmation) %></div>
+      <% else %>
+        <%= f.password_field :password_confirmation %>
+      <% end %>
+      </dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= f.label :avatar %></dt>
+    <dd>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
+      <%= image_tag(@user.avatar.thumb.url, :class => 'img-polaroid') if @user.avatar? %>
+    </dd>
+  </dl>
+  <div class="actions">
+    <%= f.submit ((action_name == 'edit') ? 'Update User' : 'Create User'), :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', root_path, :class => 'btn' %>
+  </div>
+<% end %>

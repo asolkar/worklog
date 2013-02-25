@@ -1,0 +1,14 @@
+<%= form_tag sessions_path, :class => 'form-signin' do %>
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <%= text_field_tag :username, nil,
+                     :class => 'input-block-level',
+                     :placeholder => 'Username' %>
+  <%= password_field_tag :password, nil,
+                         :class => 'input-block-level',
+                         :placeholder => 'Password' %>
+  <label class="checkbox">
+    <input type="checkbox" value="remember-me"> Remember me
+  </label>
+  <%= submit_tag "Log in", :class => "btn btn-primary" %>
+  <%= link_to "Cancel", root_path, :class => "btn" %>
+<% end %>

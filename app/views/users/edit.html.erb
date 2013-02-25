@@ -1,0 +1,8 @@
+<% provide(:title, 'Edit User - ' + "#{@user.fullname}") %>
+<% provide(:page_heading, 'Editing user ' + "#{@user.fullname}") %>
+
+<% if @user.id == current_user.id %>
+  <%= render 'form' %>
+<% else %>
+  <h2>You (id=<%= current_user.id %>) are not allowed to edit other users (id=<%= @user.id %>)</h2>
+<% end %>
