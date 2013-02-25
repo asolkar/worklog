@@ -118,3 +118,13 @@ table.log_entry_group tr {
 #entry_input_form_toggle {
   float: right;
 }
+
+/* Breadcrumbs */
+.breadcrumb a {
+  text-decoration: none;
+  font-weight: bold;
+}
+.breadcrumb a:hover {
+  text-decoration: none;
+  font-weight: bold;
+}
