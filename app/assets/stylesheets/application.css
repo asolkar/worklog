@@ -75,19 +75,19 @@ body {
 
 /* Entry table */
 .log_time_day {
-  color: #ccc;
+  color: #999;
   font-size: x-large;
   font-weight: bold;
   text-align: center;
 }
 .log_time_month {
-  color: #ccc;
+  color: #aaa;
   font-size: x-small;
   text-transform: uppercase;
   text-align: center;
 }
 .log_time_year {
-  color: #ccc;
+  color: #aaa;
   font-size: x-small;
   text-align: center;
 }
@@ -117,6 +117,37 @@ table.log_entry_group tr {
 }
 #entry_input_form_toggle {
   float: right;
+}
+
+.log_entry_body_holder {
+  position: relative;
+  margin: none;
+  padding: none;
+}
+
+.log_entry_time, .log_entry_delete {
+  display: none !important;
+  position: absolute;
+  top: -1.5em;
+  font-size: x-small;
+}
+.log_entry:hover .log_entry_time,
+.log_entry:hover .log_entry_delete {
+  display: inline-block !important;
+}
+.log_entry_time {
+  left: -4em;
+}
+.log_entry_delete {
+  right: -1em;
+  color: white;
+  font-weight: bold;
+}
+.log_entry_delete a,
+.log_entry_delete a:hover {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 /* Breadcrumbs */
