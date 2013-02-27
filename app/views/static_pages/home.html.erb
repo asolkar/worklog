@@ -1,6 +1,30 @@
-<% provide(:title, 'Home') %>
+<% provide(:title, 'Welcome!') %>
 <% content_for :home_link_style do %>
 class="active"
 <% end %>
 
-Home content comes here
+<% content_for :bold_content do %>
+    <div class="jumbotron">
+      <h1>Log your work, or you did not do it!</h1>
+      <p class="lead">With <em>WorkLog</em>, it is easy to log your tasks so
+        you know what you spent your time on</p>
+      <a class="btn btn-large btn-success" href="/signup">Sign up today</a>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid marketing">
+      <div class="span6">
+        <h4>Multiple contexts</h4>
+        <p>You are always working on multiple projects, for multiple clients.
+           Use seperate <em>WorkLog</em> logs to maintain separate contexts</p>
+      </div>
+
+      <div class="span6">
+        <h4>Task management</h4>
+        <p>Log in and easily manage your tasks. Log them, tag them, delete them in a simple
+           beautiful interface</p>
+      </div>
+    </div>
+
+<% end %> <!-- bold_content -->
