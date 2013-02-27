@@ -36,7 +36,8 @@ $(function(){
   //
   $("#entry_input_form").hide();
   $("#entry_input_form_toggle i").click(function() {
-      $("#entry_input_form").slideToggle("fast");
+    $("#entry_input_form").slideToggle("fast");
+    $("textarea#entry_body").focus();
   });
 })
 
