@@ -14,7 +14,6 @@ class EntriesController < InheritedResources::Base
   belongs_to :log
 
   def create
-    puts @tags
     create! { log_path(resource.log.user, resource.log) }
   end
 

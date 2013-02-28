@@ -1,5 +1,5 @@
 <%= div_for tag do %>
-  <div class="tag_body">
+  <div class="tag_body" style="background-color: #<%= tag.color %>">
     <div class="tag_control badge badge-important">
       <%= link_to edit_tag_path(tag.user, tag),
                   :rel => 'tooltip',

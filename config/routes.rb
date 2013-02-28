@@ -22,7 +22,7 @@ RorWorklog::Application.routes.draw do
     resources :logs do
       resources :entries
     end
-    resources :tags
+    get 'logs/:id/tags/:name' => 'logs#show', :as => 'user_log_tag'
   end
   resources :sessions
   resources :users do
