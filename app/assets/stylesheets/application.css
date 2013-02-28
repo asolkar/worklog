@@ -92,6 +92,28 @@ body {
   text-align: center;
 }
 
+/* Log controls */
+.log_body {
+  border-radius: 7px;
+  background-color: #f7f7f7;
+  padding: 1em;
+  position: relative;
+}
+.log_body a,
+.log_body a:hover {
+  text-decoration: none;
+}
+
+.log_control {
+  display: none !important;
+  position: absolute;
+  top: -0.5em;
+  right: -1em;
+}
+.log_body:hover .log_control {
+  display: inline-block !important;
+}
+
 /* Entry controls */
 .log_entry:hover .log_entry_body,
 .log_entry:hover .log_entry_ctrl {

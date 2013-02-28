@@ -49,6 +49,6 @@ class UsersController < InheritedResources::Base
       redirect_to '/'
       return
     end
-    @logs = resource.logs.order(:created_at).page(params[:page]).per(5)
+    @logs = resource.logs.order(:created_at).page(params[:page]).per(10)
   end
 end

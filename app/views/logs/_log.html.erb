@@ -1,27 +1,21 @@
 <%= div_for log do %>
-  <tr>
-    <td><%= link_to log.name, log_path(log.user, log) %></td>
-    <td><%= log.description %></td>
-    <td>
-      <%= link_to log_path(log.user, log),
+  <div class="span3 log_body">
+    <div class="log_control badge badge-important">
+      <%= link_to edit_log_path(log.user, log),
                   :rel => 'tooltip',
-                  :title => 'Share log' do %>
-        <i class="icon-share"></i>
+                  :title => 'Edit log' do %>
+        <i class="icon-edit"></i>
       <% end %>
-      <% if log.user == current_user %>
-        <%= link_to edit_log_path(log.user, log),
-                    :rel => 'tooltip',
-                    :title => 'Edit log' do %>
-          <i class="icon-edit"></i>
-        <% end %>
-        <%= link_to log_path(log.user, log),
-                    :confirm => 'Are you sure you want to delete this log?',
-                    :method => :delete,
-                    :rel => 'tooltip',
-                    :title => 'Delete log' do %>
-          <i class="icon-remove"></i>
-        <% end %>
+        &nbsp;
+      <%= link_to log_path(log.user, log),
+                  :confirm => 'Are you sure you want to delete this log?',
+                  :method => :delete,
+                  :rel => 'tooltip',
+                  :title => 'Delete log' do %>
+        <i class="icon-remove"></i>
       <% end %>
-    </td>
-  </tr>
+    </div>
+    <h3><%= link_to log.name, log_path(log.user, log) %></h3>
+    <%= log.description %>
+  </div>
 <% end %>
