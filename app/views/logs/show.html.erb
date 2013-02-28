@@ -13,6 +13,8 @@
   <div class="well span7" id="entry_input_form">
     <%= form_tag log_entries_path(@log.user, @log) do %>
       <%= text_area_tag 'entry[body]', nil, :rows => 3, :class => 'input-block-level' %>
+      <%= select_tag "entry[tags]", options_for_select(@log.user.tags.collect {|t| [t.name, t.id]}),
+                     :id => 'entry_tags', :multiple => true %>
       <%= submit_tag "Submit", :class => "btn btn-primary pull-right" %>
     <% end %>
   </div>

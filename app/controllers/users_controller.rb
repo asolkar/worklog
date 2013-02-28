@@ -5,7 +5,7 @@ class UsersController < InheritedResources::Base
   before_filter :already_logged_in, :only => [:new]
   before_filter :no_user_listing, :only => [:index]
   before_filter :user_profile_url, :only => [:show]
-  before_filter :load_logs, :only => [:show]
+  before_filter :load_belongings, :only => [:show]
 
   def update
     resource.avatar.store!
@@ -43,12 +43,13 @@ class UsersController < InheritedResources::Base
     return
   end
 
-  def load_logs
+  def load_belongings
     unless resource
       flash[:alert] = "User not found"
       redirect_to '/'
       return
     end
     @logs = resource.logs.order(:created_at).page(params[:page]).per(10)
+    @tags = resource.tags.order(:name) # .page(params[:page]).per(10)
   end
 end

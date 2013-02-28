@@ -6,6 +6,7 @@ class EntriesController < InheritedResources::Base
   before_filter :require_user, :only => [:new, :show, :create, :edit, :update, :destroy]
   before_filter :save_referer, :only => [:edit, :destroy, :show]
   before_filter :logged_in_user, :only => [:new, :show, :create, :edit, :update, :destroy]
+  before_filter :generate_tags, :only => [:create]
 
   after_filter :entry_not_found, :only => [:edit, :destroy, :show, :update]
   after_filter :not_users_entry, :only => [:edit, :destroy, :update]
@@ -13,6 +14,7 @@ class EntriesController < InheritedResources::Base
   belongs_to :log
 
   def create
+    puts @tags
     create! { log_path(resource.log.user, resource.log) }
   end
 
@@ -50,5 +52,11 @@ class EntriesController < InheritedResources::Base
     def logged_in_user
       @request_user = User.find_by_username(params[:username])
       @request_user == current_user
+    end
+
+    def generate_tags
+      if (params[:tags]) then
+        @tags = params[:tags].collect { |id| current_user.tags.find(id).first }
+      end
     end
 end

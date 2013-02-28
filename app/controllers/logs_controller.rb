@@ -60,6 +60,5 @@ class LogsController < InheritedResources::Base
     def load_entries
       @entry_groups = resource.entries.order('created_at DESC').group_by { |m| m.created_at.beginning_of_day }
       @entry_groups ||= @entry_groups.page(params[:page]).per(1)
-
     end
 end

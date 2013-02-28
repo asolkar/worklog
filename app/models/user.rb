@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_one :avatar
   has_many :logs
   has_many :entries, :through => :logs
+  has_many :tags
 
   def to_param
     username

@@ -22,12 +22,14 @@ RorWorklog::Application.routes.draw do
     resources :logs do
       resources :entries
     end
+    resources :tags
   end
   resources :sessions
   resources :users do
     resources :logs do
       resources :entries
     end
+    resources :tags
   end
 
 end

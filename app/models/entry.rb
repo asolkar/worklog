@@ -1,5 +1,5 @@
 class Entry < ActiveRecord::Base
-  attr_accessible :body, :id, :log_id
+  attr_accessible :body, :id, :log_id, :tags
 
   belongs_to :log
   has_many :tags

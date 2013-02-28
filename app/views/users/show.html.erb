@@ -1,33 +1,30 @@
 <% provide(:title, 'User Info - ' + "#{@user.fullname}") %>
 
 <% content_for :breadcrumbs do %>
-  <!-- ul class="breadcrumb">
+  <ul class="breadcrumb">
     <li><%= image_tag(@user.avatar.badge.url, :class => 'img-polaroid') %> <%= @user.fullname %></li>
-  </ul -->
+  </ul>
 <% end %>
 
-<hr>
-
 <div class="row">
-  <div class="span3">
-    <%= image_tag(@user.avatar.thumb.url, :class => 'img-polaroid') %>
-  </div><!-- /.span3 -->
-  <div class="span4">
+  <div class="span5">
     <dl class="dl-horizontal">
       <dt>Name</dt><dd><%= @user.fullname %></dd>
       <dt>Username</dt><dd><%= @user.username %></dd>
       <dt>E-mail</dt><dd><%= @user.email %></dd>
       <dt>Member since</dt><dd><%= @user.created_at.to_s(:member_since) %></dd>
     </dl>
-  </div><!-- /.span4 -->
+  </div><!-- /.span5 -->
+  <div class="span2">
+    <%= image_tag(@user.avatar.thumb.url, :class => 'img-polaroid') %>
+  </div><!-- /.span2 -->
 </div><!-- /.row -->
 
-<hr>
+<hr class="invisible">
 
 <div class="row">
   <div class="span7">
-    <%= link_to 'Edit', edit_path(@user), :class => 'btn' %>
-    <%= link_to 'Create Log', new_log_path(@user), :class => 'btn btn-primary pull-right' %>
+    <%= link_to 'Edit', edit_path(@user), :class => 'btn pull-right' %>
   </div><!-- /.span7 -->
 </div><!-- /.row -->
 
@@ -37,5 +34,29 @@
   <div class="span7">
     <%= paginate @logs %>
     <%= render @logs %>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
+
+<hr class="invisible">
+
+<div class="row">
+  <div class="span7">
+    <%= link_to 'Create Log', new_log_path(@user), :class => 'btn btn-primary pull-right' %>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
+
+<hr>
+
+<div class="row">
+  <div class="span7">
+    <%= render @tags %>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
+
+<hr class="invisible">
+
+<div class="row">
+  <div class="span7">
+    <%= link_to 'Create Tag', new_tag_path(@user), :class => 'btn btn-primary pull-right' %>
   </div><!-- /.span7 -->
 </div><!-- /.row -->

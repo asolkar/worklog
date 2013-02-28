@@ -24,6 +24,10 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
+hr.invisible {
+  margin: 15px 0;
+  border: transparent;
+}
 
 /* Main marketing message and sign up button */
 .jumbotron {
@@ -31,8 +35,8 @@ body {
   text-align: center;
 }
 .jumbotron h1 {
-  font-size: 72px;
-  line-height: 1;
+  font-size: 56px;
+  line-height: 1.2;
 }
 .jumbotron .btn {
   font-size: 21px;
@@ -111,6 +115,35 @@ body {
   right: -1em;
 }
 .log_body:hover .log_control {
+  display: inline-block !important;
+}
+
+/* Tag controls */
+.tag {
+  display: inline-block;
+}
+.tag_body {
+  border-radius: 4px;
+  background-color: #eee;
+  margin: 2px 5px;
+  padding: 0.4em;
+  position: relative;
+  display: inline-block;
+  float-left;
+}
+.tag_body a,
+.tag_body a:hover {
+  text-decoration: none;
+}
+
+.tag_control {
+  display: none !important;
+  position: absolute;
+  top: -0.5em;
+  right: -1em;
+  z-index: 10;
+}
+.tag_body:hover .tag_control {
   display: inline-block !important;
 }
 

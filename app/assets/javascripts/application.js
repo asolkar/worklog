@@ -39,6 +39,11 @@ $(function(){
     $("#entry_input_form").slideToggle("fast");
     $("textarea#entry_body").focus();
   });
+
+  //
+  // Entry tag chooser
+  //
+  $('#entry_tags').chosen();
 })
 
 }(window.jQuery)
