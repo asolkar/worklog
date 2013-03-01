@@ -5,7 +5,7 @@
         <div class="log_entry_time label label-info"><%= entry.created_at.to_s(:log_time) %></div>
         <div class="log_entry_tags">
           <%= raw entry.tags.map(&:name).map { |t| link_to t,
-                                                   user_log_tag_path(entry.log.user, entry.log, t) }.join(', ') %>
+                                                   user_tagged_log_path(entry.log.user, entry.log, t) }.join(', ') %>
         </div>
         <div class="log_entry_delete badge badge-important">
           <%= link_to user_log_entry_path(entry.log.user, entry.log, entry),

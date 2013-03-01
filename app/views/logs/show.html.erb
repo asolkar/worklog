@@ -20,7 +20,7 @@
   </div>
 
   <div class="span7">
-    <!-- %= paginate @entry_groups % -->
+    <%= paginate @resource_entries %>
     <table class="table" style="margin: 0px">
       <% @entry_groups.each { |key, value|
           @entries = value
