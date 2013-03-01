@@ -129,7 +129,7 @@ hr.invisible {
   padding: 0.4em;
   position: relative;
   display: inline-block;
-  float-left;
+  float: left;
 }
 .tag_body a,
 .tag_body a:hover {
