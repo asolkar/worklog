@@ -9,6 +9,11 @@ class TagsController < InheritedResources::Base
     create! { "/#{@user.username}" }
   end
 
+  def update
+    update! { "/#{@user.username}" }
+  end
+
+
   def destroy
     destroy! { "/#{@user.username}" }
   end

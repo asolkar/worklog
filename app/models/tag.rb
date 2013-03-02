@@ -10,7 +10,7 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :user_id
   validates_associated :user
 
-  def to_param
-    name
-  end
+  # def to_param
+  #   name
+  # end
 end

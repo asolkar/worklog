@@ -30,7 +30,6 @@ RorWorklog::Application.routes.draw do
     resources :logs do
       resources :entries
     end
-    # resources :tags
   end
 
 end
