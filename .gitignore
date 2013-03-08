@@ -26,3 +26,6 @@ config/environments/*.local.yml
 /public/uploads
 
 *.notes
+
+# Google+ Sign-in related
+client_secrets.json

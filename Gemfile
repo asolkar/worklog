@@ -25,6 +25,11 @@ gem 'activeadmin'
 # For pagination
 gem "kaminari"
 
+# For Google+ Signin
+gem 'google-api-client', '>= 0.6.2', :require => 'google/api_client'
+gem 'signet', '>=0.4.5'
+gem 'json'
+
 group :development do
   # Mongrel has better network performance than Webrick
   gem 'mongrel'

@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       # store_location
       flash[:notice] = "You must be logged in to access this page"
-      redirect_to new_session_path
-      return false
+      redirect_to new_session_path and return
     end
   end
 

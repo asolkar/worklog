@@ -1,0 +1,12 @@
+<% if !session[:token] %>
+<div id="signinButton" style="display: inline-block; float:right">
+  <span class="g-signin"
+    data-scope="https://www.googleapis.com/auth/plus.login"
+    data-clientid="<%= Settings.gplus_signin.client_id %>"
+    data-redirecturi="postmessage"
+    data-accesstype="offline"
+    data-cookiepolicy="single_host_origin"
+    data-callback="signInCallback">
+  </span>
+</div>
+<% end %>

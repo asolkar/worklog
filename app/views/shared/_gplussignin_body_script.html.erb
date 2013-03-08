@@ -1,0 +1,46 @@
+<script type="text/javascript">
+function signInCallback(authResult) {
+  if (authResult['code']) {
+
+    // Hide the sign-in button now that the user is authorized, for example:
+    $('#signinButton').hide('fast');
+
+    console.log("Sending token: " + authResult['code'])
+
+    // Send the code to the server
+    $.ajax({
+      type: 'POST',
+      url: '/google_plus_sign_in/connect',
+      // contentType: 'application/octet-stream; charset=utf-8',
+      success: function(result) {
+        // Handle or verify the server response if necessary.
+        // Prints the list of people that the user has allowed the app to know
+        // to the console.
+        console.log(result);
+        if (result['status'] == "gplus_associate") {
+          window.location.replace("/gplusassoc");
+        } else if (result['status'] == "gplus_existing") {
+          window.location.replace("/");
+        } else { // gplus_logged_in
+          window.location.replace("/");
+        }
+      },
+      error: function(xhr) {
+        result = $.parseJSON(xhr.responseText);
+        console.log(result);
+        console.log('Google+ Sign-in Failed! ' + result['message']);
+        window.location.replace("/logout")
+      },
+      processData: false,
+      // data: 'token=' + authResult['code']
+      data: authResult['code']
+    });
+  } else if (authResult['error']) {
+    // There was an error.
+    // Possible error codes:
+    //   "access_denied" - User denied access to your app
+    //   "immediate_failed" - Could not automatially log in the user
+    // console.log('There was an error: ' + authResult['error']);
+  }
+}
+</script>
