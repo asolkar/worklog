@@ -3,7 +3,7 @@
 <% content_for :breadcrumbs do %>
   <ul class="breadcrumb">
     <li id="entry_input_form_toggle"><a href="#" rel="tooltip" title="Toggle new entry"><i class="icon-edit"></i></a></li>
-    <li><%= link_to '/' do %><%= image_tag(@user.avatar.badge.url, :class => 'img-polaroid') %> <%= @user.fullname %><% end %>
+    <li><%= link_to '/' do %><%= render 'shared/breadcrumb_user_info' %><% end %>
       <span class="divider">/</span></li>
     <li class="active"><%= @log.name %></li>
   </ul>

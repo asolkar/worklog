@@ -65,5 +65,10 @@ class LogsController < InheritedResources::Base
       end
       @entry_groups = @resource_entries.group_by { |m| m.created_at.beginning_of_day }
       # @entry_groups ||= @entry_groups.page(params[:page]).per(1)
+
+      @gplus = GooglePlusSignInHelper::GooglePlusClient.get_profile(@user[:gplus_id])
+
+      logger.debug "Res: #{@gplus}"
+      logger.debug "User: #{@user}"
     end
 end

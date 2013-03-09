@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include GooglePlusSignInHelper
+
   def new
     if current_user
       flash[:notice] = "You are already logged as " + current_user.fullname
@@ -44,24 +46,8 @@ class SessionsController < ApplicationController
     #
     # Google+ owned session parameters
     #
-    if (session[:token])
-      # Use either the refresh or access token to revoke if present.
-      token = session[:token].to_hash[:refresh_token]
-      token = session[:token].to_hash[:access_token] unless token
+    GooglePlusClient.clean_google_plus_session(session)
 
-      # You could reset the state at this point, but as-is it will still stay unique
-      # to this user and we're avoiding resetting the client state.
-      # session.delete(:state)
-      session.delete(:token)
-
-      # Send the revocation request and return the result.
-      revokePath = 'https://accounts.google.com/o/oauth2/revoke?token=' + token
-      uri = URI.parse(revokePath)
-      request = Net::HTTP.new(uri.host, uri.port)
-      request.use_ssl = true
-      status = request.get(uri.request_uri).code
-      logger.debug "-------------------> sessions#destroy Cleaning Google+ session - Done " + status
-    end
     redirect_to root_url, :notice => "Logged out!" and return
   end
 end

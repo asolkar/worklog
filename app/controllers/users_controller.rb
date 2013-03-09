@@ -1,4 +1,6 @@
 class UsersController < InheritedResources::Base
+  include GooglePlusSignInHelper
+
   respond_to :html, :json
 
   before_filter :require_user, :only => [:index, :show, :edit, :update, :update_gplus_id]
@@ -54,5 +56,10 @@ class UsersController < InheritedResources::Base
     end
     @logs = resource.logs.order(:created_at).page(params[:page]).per(10)
     @tags = resource.tags.order(:name) # .page(params[:page]).per(10)
+
+    @gplus = GooglePlusSignInHelper::GooglePlusClient.get_profile(resource[:gplus_id])
+
+    logger.debug "Res: #{@gplus}"
+    logger.debug "User: #{@user}"
   end
 end

@@ -1,0 +1,5 @@
+<% if session[:gplus_id] %>
+    <li><%= image_tag(@gplus[:img_badge_url], :class => 'img-polaroid') %> <%= @gplus[:name] %></li>
+<% else %>
+    <li><%= image_tag(@user.avatar.badge.url, :class => 'img-polaroid') %> <%= @user.fullname %></li>
+<% end %>
