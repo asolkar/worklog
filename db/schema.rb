@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307232406) do
+ActiveRecord::Schema.define(:version => 20130310054334) do
 
   create_table "entries", :force => true do |t|
     t.text     "body"
@@ -52,9 +52,13 @@ ActiveRecord::Schema.define(:version => 20130307232406) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "avatar"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "gplus_id"
+    t.string   "gplus_refresh_token"
+    t.string   "gplus_display_name"
+    t.string   "gplus_profile_url"
+    t.string   "gplus_avatar_url"
   end
 
 end

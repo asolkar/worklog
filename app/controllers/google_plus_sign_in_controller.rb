@@ -1,5 +1,4 @@
 require 'google/api_client'
-require 'google/api_client/client_secrets'
 require 'uri'
 # use Rack::Session::Pool, :expire_after => 86400 # 1 day
 

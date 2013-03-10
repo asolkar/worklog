@@ -11,6 +11,15 @@ class UsersController < InheritedResources::Base
 
   def associate_gplus_id
     resource[:gplus_id] = session[:gplus_id]
+    resource[:gplus_refresh_token] = session[:token].to_hash[:refresh_token]
+
+    $gplus_client = GooglePlusSignInHelper::GooglePlusClient.new
+    @gplus = $gplus_client.get_profile(session, resource[:gplus_id])
+
+    resource[:gplus_display_name] = @gplus[:name]
+    resource[:gplus_profile_url] = @gplus[:profile_url]
+    resource[:gplus_avatar_url] = @gplus[:img_url]
+
     update
     flash[:notice] = "Associated Google+ ID " + resoutce[:gplus_id] + " to " + current_user.fullname
     redirect_to '/' and return
@@ -56,10 +65,5 @@ class UsersController < InheritedResources::Base
     end
     @logs = resource.logs.order(:created_at).page(params[:page]).per(10)
     @tags = resource.tags.order(:name) # .page(params[:page]).per(10)
-
-    @gplus = GooglePlusSignInHelper::GooglePlusClient.get_profile(resource[:gplus_id])
-
-    logger.debug "Res: #{@gplus}"
-    logger.debug "User: #{@user}"
   end
 end

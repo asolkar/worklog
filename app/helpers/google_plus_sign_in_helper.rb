@@ -1,6 +1,7 @@
 module GooglePlusSignInHelper
   require 'uri'
   require 'net/http'
+  require 'google/api_client/client_secrets'
 
   class GooglePlusClient
     #
@@ -50,8 +51,11 @@ module GooglePlusSignInHelper
     #
     # Use Google+ API to get profile of a user
     #
-    def self.get_profile(user_id)
+    def get_profile(session, user_id)
+      $client.authorization.update_token!(session[:token].to_hash)
       plus = $client.discovered_api('plus')
+
+      Rails.logger.debug "TokenPair: #{$client.authorization.to_yaml}"
       result = $client.execute(
                   :api_method => plus.people.get,
                   :parameters => {'userId' => user_id})

@@ -17,7 +17,7 @@
   </div><!-- /.span5 -->
   <div class="span2">
   <% if session[:gplus_id] %>
-    <%= image_tag(@gplus[:img_thumb_url], :class => 'img-polaroid') %>
+    <%= image_tag(@user.gplus_avatar_thumb_url, :class => 'img-polaroid') %>
   <% else %>
     <%= image_tag(@user.avatar.thumb.url, :class => 'img-polaroid') %>
   <% end %>
