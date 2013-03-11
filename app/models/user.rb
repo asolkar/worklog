@@ -1,4 +1,4 @@
-require ActiveModel::WorklogSecurePassword
+include ActiveModel::WorklogSecurePassword
 class User < ActiveRecord::Base
 
   attr_accessible :created_at, :username, :email, :fullname, :id,
