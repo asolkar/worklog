@@ -23,10 +23,10 @@ class GooglePlusSignInController < ApplicationController
                             :message => "Session token error: #{tokeninfo['error']}"},
                   :status => :unauthorized and return
         end
-        if tokeninfo['issued_to'] != $credentials.client_id
-          logger.debug "Session token issued-to mismatch: #{tokeninfo['issued_to']} != #{$credentials.client_id}"
+        if tokeninfo['issued_to'] != Settings.gplus_signin.client_id
+          logger.debug "Session token issued-to mismatch: #{tokeninfo['issued_to']} != #{Settings.gplus_signin.client_id}"
           render  :json => {:status => "error",
-                            :message => "Session token issued-to mismatch: #{tokeninfo['issued_to']} != #{$credentials.client_id}"},
+                            :message => "Session token issued-to mismatch: #{tokeninfo['issued_to']} != #{Settings.gplus_signin.client_id}"},
                   :status => :unauthorized and return
         end
 
@@ -48,8 +48,8 @@ class GooglePlusSignInController < ApplicationController
           end
         else
           user = User.find_by_gplus_id(tokeninfo['user_id'])
-          logger.debug("User by Google+ ID #{tokeninfo['user_id']} = #{user.fullname}")
           if user
+            logger.debug("User by Google+ ID #{tokeninfo['user_id']} = #{user.fullname}")
             session[:user_id] = user.id
             session[:username] = user.username
             session[:token] = token_pair
@@ -59,10 +59,11 @@ class GooglePlusSignInController < ApplicationController
                     :status => 200 and return
           else
             session[:token] = token_pair
-            GooglePlusSignInHelper::GooglePlusClient.clean_google_plus_session(session)
-            render  :json => {:status => "error",
+            session[:gplus_id] = tokeninfo['user_id']
+            # GooglePlusSignInHelper::GooglePlusClient.clean_google_plus_session(session)
+            render  :json => {:status => "gplus_create",
                               :message => "Google+ id #{tokeninfo['user_id']} not associated with any user"},
-                    :status => :unauthorized and return
+                    :status => 200 and return
           end
         end
       else

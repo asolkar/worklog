@@ -2,17 +2,20 @@ class User < ActiveRecord::Base
   attr_accessible :created_at, :username, :email, :fullname, :id,
                   :password_digest, :password, :password_confirmation,
                   :avatar, :avatar_cache, :remove_avatar,
-                  :gplus_id, :gplus_refresh_token, :gplus_diaplay_name, :gplus_profile_url,
+                  :gplus_id, :gplus_refresh_token, :gplus_display_name, :gplus_profile_url,
                   :gplus_avatar_url
 
-  has_secure_password
+  #
+  # Validate password only for native accounts, not for Google+ connections
+  #
+  # has_secure_password :validations => false
 
-  validates_presence_of :password, :on => :create
+  # validates_presence_of :password, :on => :create, :if => :is_native_account?
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_uniqueness_of :gplus_id
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_presence_of :email, :if => :is_native_account?
+  validates_uniqueness_of :email, :if => :is_native_account?
 
   mount_uploader :avatar, AvatarUploader
 
@@ -23,6 +26,14 @@ class User < ActiveRecord::Base
 
   def to_param
     username
+  end
+
+  #
+  # 
+  #
+  def is_native_account?
+    logger.debug "GPLUS_ID: #{self.gplus_id}"
+    self.gplus_id == nil
   end
 
   #
