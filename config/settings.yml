@@ -1,7 +1,7 @@
-app_name: Worklog
+app_name: ENV['APP_NAME']
 gplus_signin:
-  client_id: CLIENT_ID
-  client_secret: CLIENT_SECRET
+  client_id: ENV['GPLUS_CLIENT_ID']
+  client_secret: ENV['GPLUS_CLIENT_SECRET']
   redirect_uris: ["postmessage"]
   auth_uri: https://accounts.google.com/o/oauth2/auth
   token_uri: https://accounts.google.com/o/oauth2/token
