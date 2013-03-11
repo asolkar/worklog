@@ -20,7 +20,7 @@ class UsersController < InheritedResources::Base
     resource[:gplus_profile_url] = @gplus[:profile_url]
     resource[:gplus_avatar_url] = @gplus[:img_url]
 
-    update
+    update!
     flash[:notice] = "Associated Google+ ID " + resoutce[:gplus_id] + " to " + current_user.fullname
     redirect_to '/' and return
   end
