@@ -1,5 +1,5 @@
+require ActiveModel::WorklogSecurePassword
 class User < ActiveRecord::Base
-  include ActiveModel::WorklogSecurePassword
 
   attr_accessible :created_at, :username, :email, :fullname, :id,
                   :password_digest, :password, :password_confirmation,
