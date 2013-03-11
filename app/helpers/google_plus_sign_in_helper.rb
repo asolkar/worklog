@@ -1,25 +1,18 @@
 module GooglePlusSignInHelper
   require 'uri'
   require 'net/http'
-  require 'google/api_client/client_secrets'
 
   class GooglePlusClient
     #
     # Set up the client
     #
     def initialize
-      $credentials = Google::APIClient::ClientSecrets.load
-      Rails.logger.debug "Creds: #{$credentials.authorization_uri}"
-      Rails.logger.debug "       #{$credentials.token_credential_uri}"
-      Rails.logger.debug "       #{$credentials.client_id}"
-      Rails.logger.debug "       #{$credentials.client_secret}"
-      Rails.logger.debug "       #{$credentials.redirect_uris.first}"
       $authorization = Signet::OAuth2::Client.new(
-          :authorization_uri => $credentials.authorization_uri,
-          :token_credential_uri => $credentials.token_credential_uri,
-          :client_id => $credentials.client_id,
-          :client_secret => $credentials.client_secret,
-          :redirect_uri => $credentials.redirect_uris.first,
+          :authorization_uri => Settings.gplus_signin.auth_uri,
+          :token_credential_uri => Settings.gplus_signin.token_uri,
+          :client_id => Settings.gplus_signin.client_id,
+          :client_secret => Settings.gplus_signin.client_secret,
+          :redirect_uri => Settings.gplus_signin.redirect_uris.first,
           :scope => 'https://www.googleapis.com/auth/plus.login')
       $client = Google::APIClient.new(
         :application_name => 'Worklog',

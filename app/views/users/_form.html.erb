@@ -19,6 +19,8 @@
     <dt><%= f.label :username %></dt>
     <dd><%= f.text_field :username, :disabled => !@user.username.blank? %></dd>
   </dl>
+
+  <% if @user.is_native_account? %>
   <dl class="dl-horizontal">
     <dt><%= f.label :email %></dt>
     <dd><%= f.email_field :email %></dd>
@@ -51,6 +53,16 @@
       <%= image_tag(@user.avatar.thumb.url, :class => 'img-polaroid') if @user.avatar? %>
     </dd>
   </dl>
+  <% else %>
+    <dt><%= f.label :avatar %></dt>
+    <dd>
+      <%= image_tag(@user.gplus_avatar_thumb_url, :class => 'img-polaroid') %>
+    </dd>
+    <%= f.hidden_field :gplus_id, :value => @user.gplus_id %>
+    <%= f.hidden_field :gplus_display_name, :value => @user.gplus_display_name %>
+    <%= f.hidden_field :gplus_profile_url, :value => @user.gplus_profile_url %>
+    <%= f.hidden_field :gplus_avatar_url, :value => @user.gplus_avatar_url %>
+  <% end %>
   <div class="actions">
     <%= f.submit ((action_name == 'edit') ? 'Update User' : 'Create User'), :class => 'btn btn-primary' %>
     <%= link_to 'Cancel', root_path, :class => 'btn' %>

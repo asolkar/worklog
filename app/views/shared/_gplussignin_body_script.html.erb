@@ -21,6 +21,8 @@ function signInCallback(authResult) {
           window.location.replace("/gplusassoc");
         } else if (result['status'] == "gplus_existing") {
           window.location.replace("/");
+        } else if (result['status'] == "gplus_create") {
+          window.location.replace("/signup");
         } else { // gplus_logged_in
           window.location.replace("/");
         }

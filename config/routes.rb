@@ -11,6 +11,7 @@ RorWorklog::Application.routes.draw do
   match '/login',       to: 'sessions#new'
   match '/gplussignin', to: 'sessions#gpluscreate'
   match '/gplusassoc',  to: 'users#associate_gplus_id'
+  match '/gpluscreate', to: 'users#create_from_gplus_id'
   match '/logout',      to: 'sessions#destroy'
   match '/profile',     to: 'users#show'
 

@@ -25,6 +25,24 @@ class UsersController < InheritedResources::Base
     redirect_to '/' and return
   end
 
+  def new
+    if session[:gplus_id].blank?
+      new!
+    else
+      @user = User.new( :gplus_id => session[:gplus_id],
+                        :gplus_refresh_token => session[:token].to_hash[:refresh_token])
+
+      $gplus_client = GooglePlusSignInHelper::GooglePlusClient.new
+      @gplus = $gplus_client.get_profile(session, @user[:gplus_id])
+
+      @user[:fullname] = @gplus[:name]
+      @user[:gplus_display_name] = @gplus[:name]
+      @user[:gplus_profile_url] = @gplus[:profile_url]
+      @user[:gplus_avatar_url] = @gplus[:img_url]
+      logger.debug "USER: #{@user.to_yaml}"
+    end
+  end
+
   def update
     resource.avatar.store!
     update!
