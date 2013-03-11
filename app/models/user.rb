@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include ActiveModel::WorklogSecurePassword
+
   attr_accessible :created_at, :username, :email, :fullname, :id,
                   :password_digest, :password, :password_confirmation,
                   :avatar, :avatar_cache, :remove_avatar,
@@ -8,7 +10,7 @@ class User < ActiveRecord::Base
   #
   # Validate password only for native accounts, not for Google+ connections
   #
-  # has_secure_password :validations => false
+  worklog_has_secure_password :validations => false
 
   # validates_presence_of :password, :on => :create, :if => :is_native_account?
   validates_presence_of :username
