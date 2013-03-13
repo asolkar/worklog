@@ -4,8 +4,14 @@
   <ul class="breadcrumb">
     <li id="entry_input_form_toggle"><a href="#" rel="tooltip" title="Toggle new entry"><i class="icon-edit"></i></a></li>
     <li><%= link_to '/' do %><%= render 'shared/breadcrumb_user_info' %><% end %>
+    <span class="divider">/</span></li>
+    <% if params[:name].blank? %>
+      <li class="active"><%= @log.name %></li>
+    <% else %>
+      <li class="active"><%= link_to log_path(@log.user,@log) do %><%= @log.name %><% end %></li>
       <span class="divider">/</span></li>
-    <li class="active"><%= @log.name %></li>
+      <li class="active"><%= params[:name] %></li>
+    <% end %>
   </ul>
 <% end %>
 

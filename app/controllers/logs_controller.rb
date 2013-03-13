@@ -58,12 +58,14 @@ class LogsController < InheritedResources::Base
     end
 
     def load_entries
-      @resource_entries = resource.entries.order('created_at DESC').page(params[:page]).per(10)
-      # logger.debug "Resources: #{resource_entries.attributes.inspect}"
+      @resource_entries = resource.entries
+      #
+      # Filter by tag name if provided
+      #
       if (!params[:name].blank?) then
-        @resource_entries ||= @resource_entries.tagged_with(params[:name])
+        @resource_entries = @resource_entries.tagged_with(params[:name])
       end
+      @resource_entries = @resource_entries.order('created_at DESC').page(params[:page]).per(10)
       @entry_groups = @resource_entries.group_by { |m| m.created_at.beginning_of_day }
-      # @entry_groups ||= @entry_groups.page(params[:page]).per(1)
     end
 end
