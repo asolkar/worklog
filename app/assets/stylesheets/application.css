@@ -126,7 +126,11 @@ hr.invisible {
   border-radius: 4px;
   background-color: #eee;
   margin: 2px 5px;
-  padding: 0.4em;
+  padding: 0em 0.4em;
+  font-size: small;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
   position: relative;
   display: inline-block;
   float: left;
@@ -203,6 +207,42 @@ table.log_entry_group tr {
   color: white;
   font-weight: bold;
   text-decoration: none;
+}
+
+/* Entry tag display */
+.log_entry_tags {
+  display: inline-block;
+  float: left;
+  position: absolute;
+}
+.log_entry_tags a {
+  border-radius: 2px;
+  display: inline-block;
+  text-decoration: none;
+  font-size: small;
+  font-weight: bold;
+
+  margin-right: 1px;
+  float: left;
+  position: relative;
+  top: -8px;
+  z-index: 1000;
+  height: 2px;
+  width: 30px;
+  overflow: hidden;
+}
+.log_entry:hover .log_entry_tags a {
+  left: 1em;
+  height: 7px;
+}
+.log_entry:hover .log_entry_tags a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  overflow: visible;
+  height: auto;
+  width: auto;
+  padding: 1px 3px 1px 3px;
 }
 
 /* Breadcrumbs */

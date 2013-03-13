@@ -2,11 +2,13 @@
   <tr class="log_entry">
     <td class="span6 log_entry_body">
       <div class="log_entry_body_holder">
-        <div class="log_entry_time label label-info"><%= entry.created_at.to_s(:log_time) %></div>
         <div class="log_entry_tags">
-          <%= raw entry.tags.map(&:name).map { |t| link_to t,
-                                                   user_tagged_log_path(entry.log.user, entry.log, t) }.join(', ') %>
+          <%= raw entry.tags.map { |t| link_to t.name,
+            user_tagged_log_path(entry.log.user, entry.log, t.name),
+            :style => "background-color: ##{t.color}"
+          }.join('') %>
         </div>
+        <div class="log_entry_time label label-info"><%= entry.created_at.to_s(:log_time) %></div>
         <div class="log_entry_delete badge badge-important">
           <%= link_to user_log_entry_path(entry.log.user, entry.log, entry),
                     :confirm => 'Are you sure you want to delete this entry?',
@@ -16,7 +18,7 @@
         <i class="icon-remove"></i>
           <% end %>
         </div>
-        <div ><%= entry.body %></div>
+        <div class="log_entry_txt"><%= entry.body %></div>
       </div>
     </td>
   </tr>
