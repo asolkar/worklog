@@ -1,6 +1,20 @@
     <hr>
 
     <div class="footer">
-      <p class="muted"><%= yield(:app_name) %></a> by <%= yield(:app_author) %> &copy; <%= yield(:copy_year) %></p>
+      <p class="muted">
+        <%= yield(:app_name) %></a> by <%= yield(:app_author) %> &copy; <%= yield(:copy_year) %>
+        <!-- Google+ +1 button -->
+        <!-- Place this tag where you want the +1 button to render. -->
+        <div class="g-plusone" data-size="small" data-href="http://<%= "#{request.host}" %>"></div>
+
+        <!-- Place this tag after the last +1 button tag. -->
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+      </p>
     </div>
 
