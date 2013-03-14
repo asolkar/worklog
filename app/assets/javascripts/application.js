@@ -44,6 +44,11 @@ $(function(){
   // Entry tag chooser
   //
   $('#entry_tags').chosen();
+
+  //
+  // Power the tag color picker
+  //
+  $('#tag_colorpicker').colorpicker();
 })
 
 }(window.jQuery)

@@ -1,6 +1,8 @@
 <% provide(:title, "Log - #{@log.name}") %>
 
 <% content_for :breadcrumbs do %>
+<div class="row">
+  <div class="span7">
   <ul class="breadcrumb">
     <li id="entry_input_form_toggle"><a href="#" rel="tooltip" title="Toggle new entry"><i class="icon-edit"></i></a></li>
     <li><%= link_to '/' do %><%= render 'shared/breadcrumb_user_info' %><% end %>
@@ -13,6 +15,8 @@
       <li class="active"><%= params[:name] %></li>
     <% end %>
   </ul>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
 <% end %>
 
 <div class="row">

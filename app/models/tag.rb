@@ -8,6 +8,7 @@ class Tag < ActiveRecord::Base
 
   validates_presence_of :name, :on => :create
   validates_uniqueness_of :name, :scope => :user_id
+  validates_presence_of :color, :on => :create
   validates_associated :user
 
   # def to_param

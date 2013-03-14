@@ -1,9 +1,14 @@
 <% provide(:title, 'User Info - ' + "#{@user.fullname}") %>
 
 <% content_for :breadcrumbs do %>
+<div class="row">
+  <div class="span7">
   <ul class="breadcrumb">
     <%= render 'shared/breadcrumb_user_info' %>
+    <%= link_to 'User settings', edit_path(@user), :class => 'btn btn-mini pull-right' %>
   </ul>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
 <% end %>
 
 <div class="row">
@@ -14,6 +19,7 @@
       <dt>E-mail</dt><dd><%= @user.email %></dd>
       <dt>Member since</dt><dd><%= @user.created_at.to_s(:member_since) %></dd>
     </dl>
+    <%= render 'shared/gplussignin_button' %>
   </div><!-- /.span5 -->
   <div class="span2">
   <% if session[:gplus_id] %>
@@ -28,18 +34,17 @@
 
 <div class="row">
   <div class="span2">
-    <%= render 'shared/gplussignin_button' %>
   </div><!-- /.span2 -->
-
-  <div class="span5">
-    <%= link_to 'Edit', edit_path(@user), :class => 'btn pull-right' %>
-  </div><!-- /.span5 -->
 </div><!-- /.row -->
 
-<hr>
+<hr class="invisible">
 
 <div class="row">
   <div class="span7">
+    <ul class="breadcrumb">
+      <li><strong>Logs</strong></li>
+      <%= link_to 'Start a new Log', new_log_path(@user), :class => 'btn btn-mini btn-success pull-right' %>
+    </ul>
     <%= paginate @logs %>
     <%= render @logs %>
   </div><!-- /.span7 -->
@@ -49,22 +54,11 @@
 
 <div class="row">
   <div class="span7">
-    <%= link_to 'Create Log', new_log_path(@user), :class => 'btn btn-primary pull-right' %>
-  </div><!-- /.span7 -->
-</div><!-- /.row -->
-
-<hr>
-
-<div class="row">
-  <div class="span7">
+    <ul class="breadcrumb">
+      <li><strong>Logs</strong></li>
+      <%= link_to 'Create a new Tag', new_tag_path(@user), :class => 'btn btn-mini btn-success pull-right' %>
+    </ul>
     <%= render @tags %>
   </div><!-- /.span7 -->
 </div><!-- /.row -->
 
-<hr class="invisible">
-
-<div class="row">
-  <div class="span7">
-    <%= link_to 'Create Tag', new_tag_path(@user), :class => 'btn btn-primary pull-right' %>
-  </div><!-- /.span7 -->
-</div><!-- /.row -->

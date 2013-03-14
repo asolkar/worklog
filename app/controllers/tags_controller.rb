@@ -6,10 +6,12 @@ class TagsController < InheritedResources::Base
   belongs_to :user
 
   def create
+    params[:tag][:color].gsub!(/^#/, "")
     create! { "/#{@user.username}" }
   end
 
   def update
+    params[:tag][:color].gsub!(/^#/, "")
     update! { "/#{@user.username}" }
   end
 

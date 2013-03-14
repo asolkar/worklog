@@ -1,8 +1,6 @@
 <% if session[:token] %>
-  <!-- script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-  <g:plus href="https://plus.google.com/<%= session[:gplus_id] %>" rel="author"></g:plus -->
 <% else %>
-<div id="signinButton" style="display: inline-block; float:right">
+<div id="signinButton" style="display: inline-block; float:left">
   <span class="g-signin"
     data-scope="https://www.googleapis.com/auth/plus.login"
     data-clientid="<%= Settings.gplus_signin.client_id %>"
