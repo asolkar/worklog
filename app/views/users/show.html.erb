@@ -43,7 +43,7 @@
   <div class="span7">
     <ul class="breadcrumb">
       <li><strong>Logs</strong></li>
-      <%= link_to 'Start a new Log', new_log_path(@user), :class => 'btn btn-mini btn-success pull-right' %>
+      <%= link_to 'Start a new Log', new_log_path(@user), :class => 'btn btn-mini pull-right' %>
     </ul>
     <%= paginate @logs %>
     <%= render @logs %>
@@ -55,8 +55,8 @@
 <div class="row">
   <div class="span7">
     <ul class="breadcrumb">
-      <li><strong>Logs</strong></li>
-      <%= link_to 'Create a new Tag', new_tag_path(@user), :class => 'btn btn-mini btn-success pull-right' %>
+      <li><strong>Tags</strong></li>
+      <%= link_to 'Create a new Tag', new_tag_path(@user), :class => 'btn btn-mini pull-right' %>
     </ul>
     <%= render @tags %>
   </div><!-- /.span7 -->
