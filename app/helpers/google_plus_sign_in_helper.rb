@@ -15,7 +15,7 @@ module GooglePlusSignInHelper
           :redirect_uri => Settings.gplus_signin.redirect_uris.first,
           :scope => 'https://www.googleapis.com/auth/plus.login')
       $client = Google::APIClient.new(
-        :application_name => 'Worklog',
+        :application_name => Settings.app_name,
         :application_version => '0.1')
     end
 

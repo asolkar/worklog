@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         redirect_to "/#{user.username}", :notice => "Welcome " + user.fullname + "! You are logged in." and return
       else
-        flash.now.alert = "Google+ ID " + session[:gplus_id] + " is not connected to Worklog"
+        flash.now.alert = "Google+ ID " + session[:gplus_id] + " is not connected to #{Settings.app_name}"
         render "new" and return
       end
     else
