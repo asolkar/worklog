@@ -11,15 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
+  <dl class="dl-horizontal">
+    <dt><%= f.label :name %></dt>
+    <dd><%= f.text_field :name %></dd>
+  </dl>
+   <dl class="dl-horizontal">
+    <dt><%= f.label :description %></dt>
+    <dd><%= f.text_area :description, :rows => "3", :class => 'input-block-level' %></dd>
+  </dl>
   <div class="actions">
-    <%= f.submit 'Create Log', :class => 'btn' %>
+    <%= f.submit 'Create Log', :class => 'btn btn-primary pull-right' %>
+    <%= link_to 'Back', profile_path(), :class => 'btn' %>
   </div>
 <% end %>

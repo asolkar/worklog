@@ -11,19 +11,21 @@
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-	  <div class="input-append color" data-color="#ccff00" data-color-format="hex" id="tag_colorpicker">
-      <%= f.text_field :color, :class => "span2", :readonly => true %>
-			<span class="add-on"><i style="background-color: rgb(ccff00))"></i></span>
-		</div>
-  </div>
-
+  <dl class="dl-horizontal">
+    <dt><%= f.label :name %></dt>
+    <dd><%= f.text_field :name %></dd>
+  </dl>
+   <dl class="dl-horizontal">
+    <dt><%= f.label :color %></dt>
+    <dd>
+      <div class="input-append color" data-color="#<%= @tag.color %>" data-color-format="hex" id="tag_colorpicker">
+        <%= f.text_field :color, :class => "span2", :readonly => true %>
+        <span class="add-on"><i style="background-color: rgb(ccff00))"></i></span>
+      </div>
+    </dd>
+  </dl>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Create Tag', :class => 'btn btn-primary pull-right' %>
+    <%= link_to 'Back', profile_path(), :class => 'btn' %>
   </div>
 <% end %>

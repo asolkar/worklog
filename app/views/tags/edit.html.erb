@@ -1,6 +1,24 @@
-<h1>Editing tag</h1>
+<% provide(:title, 'Edit Tag') %>
+<% content_for :page_heading do %>
+  <h3>Tag Settings</h3>
+<% end %>
 
-<%= render 'form' %>
+<% content_for :breadcrumbs do %>
+<div class="row">
+  <div class="span7">
+  <ul class="breadcrumb">
+    <li><%= link_to '/' do %><%= render 'shared/breadcrumb_user_info' %><% end %>
+    <span class="divider">/</span></li>
+    <li class="active"><%= @tag.name %></li>
+  </ul>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
+<% end %>
 
-<%= link_to 'Show', @tag %> |
-<%= link_to 'Back', tags_path %>
+<div class="row">
+  <div class="span7">
+
+    <%= render 'form' %>
+
+  </div><!-- /.span7 -->
+</div><!-- /.row -->

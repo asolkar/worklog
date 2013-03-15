@@ -1,6 +1,24 @@
 <% provide(:title, 'New Log') %>
-<% provide(:page_heading, 'Create a new Log') %>
+<% content_for :page_heading do %>
+  <h3>Create a New Log</h3>
+<% end %>
 
-<%= render 'form' %>
+<% content_for :breadcrumbs do %>
+<div class="row">
+  <div class="span7">
+  <ul class="breadcrumb">
+    <li><%= link_to '/' do %><%= render 'shared/breadcrumb_user_info' %><% end %>
+    <span class="divider">/</span></li>
+    <li class="active">Create Log</li>
+  </ul>
+  </div><!-- /.span7 -->
+</div><!-- /.row -->
+<% end %>
 
-<%= link_to 'Back', logs_path(@user), :class => 'btn' %>
+<div class="row">
+  <div class="span7">
+
+    <%= render 'form' %>
+
+  </div><!-- /.span7 -->
+</div><!-- /.row -->

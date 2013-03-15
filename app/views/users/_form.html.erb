@@ -64,7 +64,7 @@
     <%= f.hidden_field :gplus_avatar_url, :value => @user.gplus_avatar_url %>
   <% end %>
   <div class="actions">
-    <%= f.submit ((action_name == 'edit') ? 'Update User' : 'Create User'), :class => 'btn btn-primary' %>
+    <%= f.submit ((action_name == 'edit') ? 'Update User' : 'Create User'), :class => 'btn btn-primary pull-right' %>
     <%= link_to 'Cancel', root_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -96,6 +96,11 @@ hr.invisible {
   text-align: center;
 }
 
+.masthead a,
+.masthead a:hover {
+  text-decoration: none;
+}
+
 /* Log controls */
 .log_body {
   position: relative;
