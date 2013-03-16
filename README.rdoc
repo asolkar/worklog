@@ -1,261 +1,136 @@
-== Welcome to Rails
+== About
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
+_Worklog_ is a cloud based tool, built with Ruby on Rails, that helps you keep track of work
 
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
+== Features
 
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
+Here are a few of _Worklog_ features
 
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+* Google+ Sign in or native accounts
+* Multiple logs to track multiple work contexts
+* Tags that work across logs
 
+=== Planned Features
 
-== Getting Started
+Following features are in the pipeline
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+* Search
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+== Installation (Heroku)
 
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
+Easiest way to install Worklog is on Heroku. Here is a short summary of steps involved:
 
-4. Follow the guidelines to start developing your application. You can find
-the following resources handy:
+* Get the source code. Best way to get the source code is to clone this repository
 
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
+    % git clone git@github.com:asolkar/worklog.git
 
+* To work with Heroku you will need to create an account on http://heroku.com (Heroku).
+  You will also need the Heroku command line client which can be obtained from
+  https://toolbelt.heroku.com (Heroku Toolbelt) site. You can also get the
+  client via the +heroku+ gem (although this is not recommended):
 
-== Debugging Rails
+    % gem install heroku
 
-Sometimes your application goes wrong. Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
+* Once you have +heroku+, you can login with your Heroku credentials:
 
-First area to check is the application log files. Have "tail -f" commands
-running on the server.log and development.log. Rails will automatically display
-debugging and runtime information to these files. Debugging info will also be
-shown in the browser on requests from 127.0.0.1.
+    % heroku login
+    Enter your Heroku credentials.
+    Email: <Your email>
+    Password (typing will be hidden): <Your password>
+    Authentication successful.
 
-You can also log your own messages directly into the log file from your code
-using the Ruby logger class from inside your controllers. Example:
+* Upon logging in you can create an app. It is best to first navigate into
+  app's directory before invoking heroku:
 
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
+    % cd worklog
+    % heroku apps:create
+    Creating agile-ravine-7806... done, stack is cedar
+    http://agile-ravine-7806.herokuapp.com/ | git@heroku.com:agile-ravine-7806.git
+    Git remote heroku added
 
-The result will be a message in your log file along the lines of:
+  Since we run the above command in the app directory, heroku adds a +remote+
+  in your +git+ configuration that points to the new Heroku app.
 
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
+  Note down the URL to the Heroku app -
+  _http://agile-ravine-7806.herokuapp.com_
+  in this case
 
-More information on how to use the logger is at http://www.ruby-doc.org/core/
+    % git config -l
+    user.name=Your Name
+    user.email=you@domain.com
+    core.repositoryformatversion=0
+    core.filemode=true
+    core.bare=false
+    core.logallrefupdates=true
+    remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+    remote.origin.url=git@github.com:asolkar/worklog.git
+    branch.master.remote=origin
+    branch.master.merge=refs/heads/master
+    remote.heroku.url=git@heroku.com:agile-ravine-7806.git
+    remote.heroku.fetch=+refs/heads/*:refs/remotes/heroku/*
 
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
+* Add a Postgres database to store application data
 
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
+    % heroku addons:add heroku-postgresql:dev
+    Adding heroku-postgresql:dev on agile-ravine-7806... done, v3 (free)
+    Attached as HEROKU_POSTGRESQL_AMBER_URL
+    Database has been created and is available
+     ! This database is empty. If upgrading, you can transfer
+     ! data from another database with pgbackups:restore.
+    Use `heroku addons:docs heroku-postgresql:dev` to view documentation.
 
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
+* _Worklog_ supports both native accounts and Google+ Sign-in to authenticate
+  users. It is highly recommended to use Google+ Sign-in when installing on
+  Heroku. If you use native accounts, you will need some kind of storate (AWS,
+  etc.) to store avatars.
+  To use Google+ Sign-in, you will need to register your app with Google and
+  get a _Client ID_ and a _Client Secret_. You can do so at
+  https://code.google.com/apis/console (API Console).
 
+* Add Google Client ID and Client Secret to Heroku App's configuration. Also
+  Worklog name of your choice to the configuration
 
-== Debugger
+    % heroku config:add APP_NAME=Worklog GPLUS_CLIENT_ID=<Client ID> GPLUS_CLIENT_SECRET=<Client Secret>
 
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
+* At this point, you are ready to deploy your app
 
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.all
-      debugger
-    end
-  end
+    % git push heroku master
+    Counting objects: 686, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (244/244), done.
+    Writing objects: 100% (686/686), 178.75 KiB, done.
+    Total 686 (delta 422), reused 686 (delta 422)
 
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
+    -----> Ruby/Rails app detected
+    -----> Using Ruby version: ruby-1.9.3
+    -----> Installing dependencies using Bundler version 1.3.2
 
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
-
-...and even better, you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you can enter "cont".
+    ....
 
 
-== Console
+    -----> Compiled slug size: 25.1MB
+    -----> Launching... done, v6
+           http://agile-ravine-7806.herokuapp.com deployed to Heroku
 
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
+    To git@heroku.com:agile-ravine-7806.git
+     * [new branch]      master -> master
 
-To start the console, run <tt>rails console</tt> from the application
-directory.
+  Note that some errors at +rake assets:precompile+ stage are expected
 
-Options:
+* Before heading over to the app, initialize the database:
 
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
+    % heroku run:detached rake db:migrate
+    Running `rake db:migrate` detached... up, run.5639
+    Use `heroku logs -p run.5639` to view the output.
+    % heroku logs -p run.5639
+    2013-03-16T01:44:33+00:00 heroku[run.5639]: Starting process with command `bundle exec rake db:migrate`
+    2013-03-16T01:44:34+00:00 heroku[run.5639]: State changed from starting to up
 
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
+    .....
 
-More information about irb can be found at:
-link:http://www.rubycentral.org/pickaxe/irb.html
+    2013-03-16T01:44:50+00:00 heroku[run.5639]: Process exited with status 0
+    2013-03-16T01:44:50+00:00 heroku[run.5639]: State changed from up to complete
 
+* Once database is initialized, the app should be ready to use. In your
+  browser, navigate to the Heroku app URL noted when you created the app.
 
-== dbconsole
-
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
-
-== Description of Contents
-
-The default directory structure of a generated Ruby on Rails application:
-
-  |-- app
-  |   |-- assets
-  |       |-- images
-  |       |-- javascripts
-  |       `-- stylesheets
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-  |   `-- views
-  |       `-- layouts
-  |-- config
-  |   |-- environments
-  |   |-- initializers
-  |   `-- locales
-  |-- db
-  |-- doc
-  |-- lib
-  |   `-- tasks
-  |-- log
-  |-- public
-  |-- script
-  |-- test
-  |   |-- fixtures
-  |   |-- functional
-  |   |-- integration
-  |   |-- performance
-  |   `-- unit
-  |-- tmp
-  |   |-- cache
-  |   |-- pids
-  |   |-- sessions
-  |   `-- sockets
-  `-- vendor
-      |-- assets
-          `-- stylesheets
-      `-- plugins
-
-app
-  Holds all the code that's specific to this particular application.
-
-app/assets
-  Contains subdirectories for images, stylesheets, and JavaScript files.
-
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from
-  ApplicationController which itself descends from ActionController::Base.
-
-app/models
-  Holds models that should be named like post.rb. Models descend from
-  ActiveRecord::Base by default.
-
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.html.erb for the WeblogsController#index action. All views use
-  eRuby syntax by default.
-
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the
-  common header/footer method of wrapping views. In your views, define a layout
-  using the <tt>layout :default</tt> and create a file named default.html.erb.
-  Inside default.html.erb, call <% yield %> to render the view using this
-  layout.
-
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are
-  generated for you automatically when using generators for controllers.
-  Helpers can be used to wrap functionality for your views into methods.
-
-config
-  Configuration files for the Rails environment, the routing map, the database,
-  and other dependencies.
-
-db
-  Contains the database schema in schema.rb. db/migrate contains all the
-  sequence of Migrations for your schema.
-
-doc
-  This directory is where your application documentation will be stored when
-  generated using <tt>rake doc:app</tt>
-
-lib
-  Application specific libraries. Basically, any kind of custom code that
-  doesn't belong under controllers, models, or helpers. This directory is in
-  the load path.
-
-public
-  The directory available for the web server. Also contains the dispatchers and the
-  default HTML files. This should be set as the DOCUMENT_ROOT of your web
-  server.
-
-script
-  Helper scripts for automation and generation.
-
-test
-  Unit and functional tests along with fixtures. When using the rails generate
-  command, template test files will be generated for you and placed in this
-  directory.
-
-vendor
-  External libraries that the application depends on. Also includes the plugins
-  subdirectory. If the app has frozen rails, those gems also go here, under
-  vendor/rails/. This directory is in the load path.
