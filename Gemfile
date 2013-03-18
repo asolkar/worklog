@@ -8,6 +8,7 @@ gem "seed_dumper", "~> 0.1.3"
 gem 'jquery-rails', '2.1.3'
 
 gem 'awesome_print'
+gem 'ruby-prof'
 
 # For app config and settings
 gem "rails_config"
