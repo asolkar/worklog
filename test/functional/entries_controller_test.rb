@@ -6,16 +6,21 @@ class EntriesControllerTest < ActionController::TestCase
     @entry = entries(:one)
   end
 
-  # test "should get index" do
-  #   get :index
-  #   assert_response :success
-  #   assert_not_nil assigns(:entries)
-  # end
+  test "should not get index" do
+    get :index, :username => @logged_in_user.username, :log_id => @logged_in_user_log.id
+    # assert_response :unprocessable_entity # FIXME: only for json (API)
+    assert_match(/not supported/, flash[:alert],
+                 "No flash alert indicating entry listing not supported")
+    assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
+  end
 
-  # test "should get new" do
-  #   get :new
-  #   assert_response :success
-  # end
+  test "should not get new" do
+    get :new, :username => @logged_in_user.username, :log_id => @logged_in_user_log.id
+    # assert_response :unprocessable_entity # FIXME: only for json (API)
+    assert_match(/not supported/, flash[:alert],
+                 "No flash alert indicating standalone new entry form not supported")
+    assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
+  end
 
   test "should create entry" do
     assert_difference('Entry.count') do
@@ -25,28 +30,34 @@ class EntriesControllerTest < ActionController::TestCase
     assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
   end
 
-  # test "should show entry" do
-  #   get :show, id: @entry
-  #   assert_response :success
-  # end
+  test "should not show entry" do
+    get :show, id: @entry, :username => @logged_in_user.username, :log_id => @logged_in_user_log.id
+    # assert_response :unprocessable_entity # FIXME: only for json (API)
+    assert_match(/not supported/, flash[:alert],
+                 "No flash alert indicating standalone entry display not supported")
+    assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
+  end
 
-  # test "should get edit" do
-  #   get :edit, id: @entry
-  #   assert_response :success
-  # end
+  test "should get edit" do
+    get :edit, id: @entry, :username => @logged_in_user.username, :log_id => @logged_in_user_log.id
+    # assert_response :unprocessable_entity # FIXME: only for json (API)
+    assert_match(/not supported/, flash[:alert],
+                 "No flash alert indicating standalone edit entry form not supported")
+    assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
+  end
 
-  # test "should update entry" do
-  #   put :update, id: @entry, entry: {  }
-  #   assert_redirected_to entry_path(assigns(:entry))
-  # end
+  test "should update entry" do
+    put :update, id: @entry, entry: { body: "Updated Test body" }, :username => @logged_in_user.username, :log_id => @logged_in_user_log.id
+    assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
+  end
 
-  # test "should destroy entry" do
-  #   assert_difference('Entry.count', -1) do
-  #     delete :destroy, id: @entry
-  #   end
+  test "should destroy entry" do
+    assert_difference('Entry.count', -1) do
+      delete :destroy, id: @entry, :username => @logged_in_user.username, :log_id => @logged_in_user_log
+    end
 
-  #   assert_redirected_to entries_path
-  # end
+    assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)
+  end
 
   def login_user
     @logged_in_user = users(:one)
