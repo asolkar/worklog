@@ -2,10 +2,10 @@
 
 one:
   id: 1
-  body: MyText
+  body: Log entry one
   log_id: 1
 
 two:
-  id: 1
-  body: MyText
+  id: 2
+  body: Log entry two
   log_id: 1

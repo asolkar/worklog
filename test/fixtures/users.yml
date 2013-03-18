@@ -1,17 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  username: MyString
-  fullname: MyString
+  username: user1
+  fullname: User One
   id: 1
-  email: MyString
-  password_digest: MyString
-  avatar: MyString
+  email: user@one.com
+  password_digest: user1pd
+  avatar: /user/one/ava.png
 
 two:
-  username: MyString
-  fullname: MyString
-  id: 1
-  email: MyString
-  password_digest: MyString
-  avatar: MyString
+  username: user2
+  fullname: User Two
+  id: 2
+  email: user@two.com
+  password_digest: user2pd
+  avatar: /user/two/ava.png
+

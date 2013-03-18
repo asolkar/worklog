@@ -12,12 +12,13 @@ class User < ActiveRecord::Base
   #
   worklog_has_secure_password :validations => false
 
-  # validates_presence_of :password, :on => :create, :if => :is_native_account?
+  validates_presence_of :password_digest, :on => :create, :if => :is_native_account?
   validates_presence_of :username
   validates_uniqueness_of :username
-  validates_uniqueness_of :gplus_id
-  validates_presence_of :email, :if => :is_native_account?
-  validates_uniqueness_of :email, :if => :is_native_account?
+  validates_presence_of :fullname
+  validates_uniqueness_of :gplus_id, :if => :has_gplus_account?
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   mount_uploader :avatar, AvatarUploader
 
@@ -36,6 +37,10 @@ class User < ActiveRecord::Base
   def is_native_account?
     logger.debug "GPLUS_ID: #{self.gplus_id}"
     self.gplus_id == nil
+  end
+  def has_gplus_account?
+    logger.debug "GPLUS_ID: #{self.gplus_id}"
+    self.gplus_id != nil
   end
 
   #

@@ -2,12 +2,12 @@
 
 one:
   id: 1
-  name: MyString
-  description: MyText
+  name: Log One
+  description: Log one description
   user_id: 1
 
 two:
-  id: 1
-  name: MyString
-  description: MyText
+  id: 2
+  name: Logtwo
+  description: Logtwo description
   user_id: 1

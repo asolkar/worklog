@@ -7,6 +7,8 @@ gem 'therubyracer', '~> 0.10.2'
 gem "seed_dumper", "~> 0.1.3"
 gem 'jquery-rails', '2.1.3'
 
+gem 'awesome_print'
+
 # For app config and settings
 gem "rails_config"
 
