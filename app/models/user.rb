@@ -12,13 +12,14 @@ class User < ActiveRecord::Base
   #
   worklog_has_secure_password :validations => false
 
-  validates_presence_of :password_digest, :on => :create, :if => :is_native_account?
   validates_presence_of :username
-  validates_uniqueness_of :username
   validates_presence_of :fullname
-  validates_uniqueness_of :gplus_id, :if => :has_gplus_account?
   validates_presence_of :email
+  validates_presence_of :password_digest, :on => :create, :if => :is_native_account?
+
+  validates_uniqueness_of :username
   validates_uniqueness_of :email
+  validates_uniqueness_of :gplus_id, :if => :has_gplus_account?
 
   mount_uploader :avatar, AvatarUploader
 
