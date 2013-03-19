@@ -3,11 +3,15 @@ class UsersController < InheritedResources::Base
 
   respond_to :html, :json
 
-  before_filter :require_user, :only => [:index, :show, :edit, :update, :update_gplus_id]
+  before_filter :require_user, :only => [:index, :show, :edit, :update, :update_gplus_id, :destroy]
   before_filter :already_logged_in, :only => [:new]
   before_filter :no_user_listing, :only => [:index]
   before_filter :user_profile_url, :only => [:show]
   before_filter :load_belongings, :only => [:show]
+
+  def create
+    create! { logout_path  }
+  end
 
   def associate_gplus_id
     resource[:gplus_id] = session[:gplus_id]
@@ -21,7 +25,7 @@ class UsersController < InheritedResources::Base
     resource[:gplus_avatar_url] = @gplus[:img_url]
 
     update!
-    flash[:notice] = "Associated Google+ ID " + resoutce[:gplus_id] + " to " + current_user.fullname
+    flash[:notice] = "Associated Google+ ID " + resource[:gplus_id] + " to " + current_user.fullname
     redirect_to '/' and return
   end
 
@@ -46,6 +50,11 @@ class UsersController < InheritedResources::Base
   def update
     resource.avatar.store!
     update!
+  end
+
+  def destroy
+    flash[:alert] = "User destruction not supported"
+    redirect_to "/#{resource.username}" and return
   end
 
   private

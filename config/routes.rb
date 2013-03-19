@@ -19,9 +19,10 @@ RorWorklog::Application.routes.draw do
   # Paths for user scoped access
   #
   scope '/:username', :constraints => ProfileConstraint do
-    get '' => 'users#show'
-    put '' => 'users#update'
-    get 'edit' => 'users#edit'
+    get '' => 'users#show', :as => 'user'
+    put '' => 'users#update', :as => 'user'
+    get 'edit' => 'users#edit', :as => 'edit_user'
+    delete 'destory' => 'users#destroy', :as => 'destroy_user'
     resources :logs do
       resources :entries
     end
@@ -29,11 +30,7 @@ RorWorklog::Application.routes.draw do
     get 'logs/:id/tags/:name' => 'logs#show', :as => 'user_tagged_log'
   end
   resources :sessions
-  resources :users do
-    resources :logs do
-      resources :entries
-    end
-  end
+  resources :users, :only => [:create]
 
   #
   # Routes for Google+ Sign In

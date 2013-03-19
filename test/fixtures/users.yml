@@ -1,18 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  username: user1
-  fullname: User One
   id: 1
+  username: user1
   email: user@one.com
+  fullname: User One
   password_digest: user1pd
   avatar: /user/one/ava.png
 
 two:
-  username: user2
-  fullname: User Two
   id: 2
+  username: user2
   email: user@two.com
-  password_digest: user2pd
-  avatar: /user/two/ava.png
-
+  fullname: User Two
+  gplus_id: 718728738748718

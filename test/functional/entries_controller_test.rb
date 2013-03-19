@@ -24,7 +24,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should create entry" do
     assert_difference('Entry.count') do
-      post :create, entry: { body: "Test body" }, user_id:@logged_in_user.id, log_id: @logged_in_user_log.id
+      post :create, entry: { body: "Test body" }, username:@logged_in_user.username, log_id: @logged_in_user_log.id
     end
 
     assert_redirected_to log_path(username: @logged_in_user.username, id: @logged_in_user_log.id)

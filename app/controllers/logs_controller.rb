@@ -6,12 +6,22 @@ class LogsController < InheritedResources::Base
   # before_filter :require_user, :only => [:new, :show, :create, :edit, :update, :destroy]
   before_filter :save_referer, :only => [:edit, :destroy, :show]
   before_filter :load_entries, :only => [:show]
-  before_filter :logged_in_user, :only => [:new, :show, :create, :edit, :update, :destroy]
+  before_filter :logged_in_user, :only => [:index, :new, :show, :create, :edit, :update, :destroy]
 
   after_filter :log_not_found, :only => [:edit, :destroy, :show]
   after_filter :not_users_log, :only => [:edit, :destroy]
 
   belongs_to :user
+
+  def index
+    flash[:alert] = "Listing logs is not supported"
+    redirect_to user_path(@request_user.username)
+    return false
+  end
+
+  def update
+    update! { log_path(resource.user, resource) }
+  end
 
   def create
     create! { log_path(resource.user, resource) }

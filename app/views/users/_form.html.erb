@@ -11,6 +11,9 @@
     </div>
   <% end %>
 
+  <%= render 'shared/gplussignin_button' %>
+  <br>
+  <hr>
   <dl class="dl-horizontal">
     <dt><%= f.label :fullname %></dt>
     <dd><%= f.text_field :fullname %></dd>
@@ -24,13 +27,13 @@
     <dt><%= f.label :email %></dt>
     <dd><%= f.email_field :email %></dd>
   </dl>
+
+  <% if @user.is_native_account? %>
+
   <dl class="dl-horizontal">
     <dt><%= f.label :password %></dt>
     <dd><%= f.password_field :password %></dd>
   </dl>
-
-  <% if @user.is_native_account? %>
-
   <% if @user.errors.has_key?(:password_confirmation) %>
   <dl class="dl-horizontal control-group error">
   <% else %>
