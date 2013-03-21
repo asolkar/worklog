@@ -18,6 +18,7 @@ var entry_input_state = 0;
 $(function(){
 
   var $window = $(window)
+  var entry_input_form_pos;
 
   //
   // Activate Bootstrap tooltips
@@ -38,6 +39,20 @@ $(function(){
   $("#entry_input_form_toggle i").click(function() {
     $("#entry_input_form").slideToggle("fast");
     $("textarea#entry_body").focus();
+    if ($("#entry_input_form").is(':visible')) {
+      entry_input_form_pos = $('#entry_input_form').position();
+    }
+  });
+  $(window).scroll(function() {
+    if ($("#entry_input_form").is(':visible')) {
+      var window_top = $(window).scrollTop();
+      if (window_top > entry_input_form_pos.top) {
+        $("#entry_input_form").css('position', 'fixed');
+        $("#entry_input_form").css('top', '0px');
+      } else {
+        $("#entry_input_form").css('position', 'relative');
+      }
+    }
   });
 
   //

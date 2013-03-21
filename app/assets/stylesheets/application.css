@@ -186,6 +186,11 @@ table.log_entry_group tbody tr:first-child {
 table.log_entry_group tr {
   border-top: thin dotted #eee;
 }
+
+#entry_input_form {
+  z-index: 20;
+}
+
 #entry_input_form_toggle {
   float: right;
 }
