@@ -6,6 +6,8 @@ _Worklog_ is a cloud based tool, built with Ruby on Rails, that helps you keep t
 
 {<img src="https://travis-ci.org/asolkar/worklog.png?branch=master" alt="Build Status" />}[https://travis-ci.org/asolkar/worklog]
 
+{<img src="https://www.codeship.io/projects/c6d1e9d0-f108-0130-e52a-42d7abe29351/status" alt="Build Status" />}[https://www.codeship.io/projects/6290]
+
 == Features
 
 Here are a few of _Worklog_ features
