@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export APP_NAME="Local Log"
+export APP_HOST="https://localhost:3003"
+export GPLUS_CLIENT_ID=""
+export GPLUS_CLIENT_SECRET=""
+
+thin start \
+     -p 3003 \
+     --ssl \
+     --ssl-verify \
+     --ssl-key-file ~/.ssl/server.key \
+     --ssl-cert-file ~/.ssl/server.crt

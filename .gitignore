@@ -34,3 +34,6 @@ client_secrets.json
 
 # Cloud9 files
 .c9revisions
+
+# Local scripts
+script/launch
