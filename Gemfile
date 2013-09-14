@@ -59,3 +59,6 @@ group :test do
   gem 'watir-rails'
   gem 'headless'
 end
+
+# Monitoring
+gem 'newrelic_rpm'
