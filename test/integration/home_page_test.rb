@@ -9,12 +9,17 @@ class StaticPagesTest < ActionController::TestCase
     #
     # TODO: Repeate for tablet and mobile modes
     #
+    if ENV['HEADLESS']
+      @headless = Headless.new
+      @headless.start
+    end
     @browser = Watir::Browser.new
     @browser.window.resize_to(1200, 900)
   end
 
   def teardown
     @browser.close
+    # @headless.destory
   end
 
   def test_home_page_should_contain_expected_text
