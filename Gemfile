@@ -36,12 +36,13 @@ gem 'json'
 group :development do
   # Mongrel has better network performance than Webrick
   # gem 'mongrel'
-  # gem 'thin'
+  gem 'thin'
   gem 'sqlite3', '1.3.6'
 end
 
 group :production do
   gem 'pg', '0.12.2'
+  gem 'unicorn'
 end
 
 # Gems used only for assets and not required
